@@ -28,9 +28,20 @@ if __name__ == '__main__':
         filled=True,
         extruded=True,
         wireframe=True,
-        get_elevation="properties.valuePerSqm / 20", # Vancouver BC settings
+        get_elevation="properties.valuePerSqm / 100", # Vancouver BC settings
         #get_elevation="properties.Taxable_Value / (properties.GIS_Acres * 1000)", # #settings for GrandRapids MI
-        get_fill_color="[0, 255, properties.growth * 255]", #Use to set color of parcels
+        # get_fill_color="[0, 255, 255]", #Use to set color of parcels to constant value
+        get_fill_color=""
+                       "properties.valuePerSqm == 0.0 ? [175,171,171]:"
+                       "properties.valuePerSqm < 1000 ? [162,58,51]:"
+                       "properties.valuePerSqm < 2000 ? [223,157,152]:"
+                       "properties.valuePerSqm < 3000 ? [159,153,187]:"
+                       "properties.valuePerSqm < 4000 ? [141,190,239]:"
+                       "properties.valuePerSqm < 5000 ? [122,170,177]:"
+                       "properties.valuePerSqm < 10000 ? [102,149,115]:"
+                       "properties.valuePerSqm < 20000 ? [83,129,53]:"
+                       "[255,127,0]"
+                       "", #Set parcels based on value range
         get_line_color=[255, 255, 255],
     )
 
